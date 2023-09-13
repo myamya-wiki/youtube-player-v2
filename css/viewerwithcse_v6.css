@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+/* FWVGA 854*480 */
+/* 基本設定 */
+html,body {
+  width: 100%;
+  height: 100%;
+}
+
+body{
+  position: relative;
+}
+
+div#input {
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+  opacity: 0.8;
+  box-shadow: 0 0 2px 1px rgba(17, 17, 17, 0.5);
+  z-index: 500;
+}
+
+div#input:hover {
+  opacity: 0.9;
+}
+
+iframe{
+  display:block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 余分なpadding除去 */
+.cse .gsc-control-cse, .gsc-control-cse {
+  padding: 0!important;
+}
+
+/* div#playerとdiv#player-offsetの高さを共通に */
+div[id^="player"] {
+  height: 56.25vw;
+}
+
+div#player {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 70%;
+  background: #333;
+  color: #FFF;
+  z-index: 999;
+}
+
+/*div#search {
+}*/
+
+/* div#search内の項目をすべてwidth:100% */
+div#search > * {
+  width: 100%;
+}
+
+/* div#search-boxとdiv#search-box-offsetの高さを共通に */
+div[id^="search-box"]  {
+  height: 35px;
+}
+
+div#search-box {
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 250;
+}
+
+div#search-results {
+  overflow: hidden;
+  padding-bottom: calc(5px + 27px + 5px);
+}
+
+/* 大表示 */
+@media screen and (min-width: 481px){
+
+  div#search, div#search-box {
+    width: calc(100% - 480px);
+    max-width: 270px;
+  }
+
+  div#search {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 751px) {
+  div[id^="player"] {
+    max-width: 480px;/* 一時サイズ固定 */
+    max-height: 270px;/* 一時サイズ固定 */
+  }
+}
+
+@media screen and (min-width: 752px) {
+  div[id^="player"] {
+    height: calc(56.25vw - 151.875px);
+    max-width: calc(100% - 270px);
+  }
+}
+
+/* 小表示 */
+@media screen and (max-width:480px) {
+  div#search {
+    width: 100%;
+    height: calc(100% - 56.25vw);
+  }
+
+  div#search-box {
+    top: 56.25vw;
+  }
+}
+
+/* ウィンドウが動画で満たされたら(小表示まで) */
+@media screen and (max-width:480px) and (max-height:56.25vw){
+  div#search {
+    display: none;
+  }
+}
